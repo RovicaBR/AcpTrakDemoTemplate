@@ -1,0 +1,8 @@
+(*Global Process Parameters*)
+VAR
+	gProductWidth : REAL := 0.15;
+	gSpeedEmpty : REAL := 2.0;
+	gAccEmpty : REAL := 20.0;
+	gSpeedFull : REAL := 1.0;
+	gAccFull : REAL := 10.0;
+END_VAR

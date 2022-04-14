@@ -1,0 +1,43 @@
+(*sequence control*)
+VAR
+	Step : StepEnum;
+	i : UINT;
+	CntShuttle : UINT;
+	CntSegment : UINT;
+END_VAR
+(*add shuttles for simulation*)
+VAR
+	SimNumShuttle : USINT := 4;
+	SimShuttle : ARRAY[1..TRAK_MAX_SHUTTLE] OF TrakSimShuttleType;
+END_VAR
+(*initialze shuttle user data*)
+VAR
+	SizeofShuttleUserData : UDINT;
+	ShuttleUserData : TrakShuttleUserDataType;
+END_VAR
+(*assembly FUB*)
+VAR
+	MC_BR_AsmReset_AcpTrak_0 : MC_BR_AsmReset_AcpTrak;
+	MC_BR_AsmPowerOn_AcpTrak_0 : MC_BR_AsmPowerOn_AcpTrak;
+	MC_BR_AsmPowerOff_AcpTrak_0 : MC_BR_AsmPowerOff_AcpTrak;
+	MC_BR_AsmGetInfo_AcpTrak_0 : MC_BR_AsmGetInfo_AcpTrak;
+	MC_BR_AsmReadStatus_AcpTrak_0 : MC_BR_AsmReadStatus_AcpTrak;
+	MC_BR_AsmReadInfo_AcpTrak_0 : MC_BR_AsmReadInfo_AcpTrak;
+	MC_BR_AsmGetSegment_AcpTrak_0 : MC_BR_AsmGetSegment_AcpTrak;
+	MC_BR_SecAddShuttle_AcpTrak_0 : MC_BR_SecAddShuttle_AcpTrak;
+	MC_BR_AsmGetShuttle_AcpTrak_0 : MC_BR_AsmGetShuttle_AcpTrak;
+	MC_BR_AsmDeleteShuttle_AcpTrak_0 : MC_BR_AsmDeleteShuttle_AcpTrak;
+END_VAR
+(*segment FUB*)
+VAR
+	MC_BR_SegReadStatus_AcpTrak_0 : ARRAY[1..TRAK_MAX_SEGMENT] OF MC_BR_SegReadStatus_AcpTrak;
+END_VAR
+(*shuttle FUB*)
+VAR
+	MC_BR_ShCopyUserData_AcpTrak_0 : MC_BR_ShCopyUserData_AcpTrak;
+	MC_BR_ShReadInfo_AcpTrak_0 : ARRAY[1..TRAK_MAX_SHUTTLE] OF MC_BR_ShReadInfo_AcpTrak;
+	MC_ReadStatus_0 : ARRAY[1..TRAK_MAX_SHUTTLE] OF MC_ReadStatus;
+	MC_Stop_0 : MC_Stop;
+	MC_BR_RoutedMoveVel_AcpTrak_0 : MC_BR_RoutedMoveVel_AcpTrak;
+	MC_BR_RoutedMoveAbs_AcpTrak_0 : MC_BR_RoutedMoveAbs_AcpTrak;
+END_VAR

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Package xmlns="http://br-automation.co.at/AS/Package">
+  <Objects>
+    <Object Type="File" Description="Global data types">gTrak.typ</Object>
+    <Object Type="File" Description="Global variables">gTrak.var</Object>
+    <Object Type="Program" Language="IEC" Description="trak assembly control">TrakCtrl</Object>
+    <Object Type="Package" Description="tasks to be used by the machine process">ProcessMachine</Object>
+    <Object Type="Package" Description="template default tasks to be replicated">ProcessTemplate</Object>
+    <Object Type="Package">Infrastructure</Object>
+  </Objects>
+</Package>

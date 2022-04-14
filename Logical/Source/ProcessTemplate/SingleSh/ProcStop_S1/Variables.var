@@ -1,0 +1,53 @@
+(*process configuration*)
+VAR
+	PPAdr : UDINT;
+	SecAdr : UDINT;
+END_VAR
+(*commands*)
+VAR
+	CmdEnableProcess : BOOL;
+END_VAR
+(*sequence control*)
+VAR
+	Step : StepEnum;
+	ShuttleAxis : McAxisType;
+	ShuttleUserData : TrakShuttleUserDataType;
+	WaitTime : UDINT := 500;
+	ProcPointPos : LREAL;
+	DistTravelled : LREAL;
+	ReleaseSts : BOOL;
+END_VAR
+(*barrier functionality*)
+VAR
+	sTickets : StepTicket; (*step variable for state machine*)
+	cmdFreeShuttles : BOOL; (*When should the shuttles be released*)
+END_VAR
+(*colour configuration*)
+VAR
+	Red : REAL;
+	Green : REAL;
+	Blue : REAL;
+END_VAR
+(*movement configuration*)
+VAR
+	Speed_IN : REFERENCE TO REAL;
+	Acc_IN : REFERENCE TO REAL;
+	Speed_OUT : REFERENCE TO REAL;
+	Acc_OUT : REFERENCE TO REAL;
+END_VAR
+(*FUB - Generic*)
+VAR
+	MC_BR_AsmReadStatus_AcpTrak_0 : MC_BR_AsmReadStatus_AcpTrak;
+	MC_BR_TrgPointEnable_AcpTrak_0 : MC_BR_TrgPointEnable_AcpTrak;
+	MC_BR_TrgPointGetInfo_AcpTrak_0 : MC_BR_TrgPointGetInfo_AcpTrak;
+	MC_BR_ShCopyUserData_AcpTrak_0 : MC_BR_ShCopyUserData_AcpTrak;
+	MC_BR_RoutedMoveAbs_AcpTrak_0 : MC_BR_RoutedMoveAbs_AcpTrak;
+	MC_BR_ElasticMoveVel_AcpTrak_0 : MC_BR_ElasticMoveVel_AcpTrak;
+	MC_BR_ProcPointGetInfo_AcpTrak_0 : MC_BR_ProcPointGetInfo_AcpTrak;
+	TON_0 : TON;
+END_VAR
+(*FUB - Barrier*)
+VAR
+	MC_BR_BarrierCommand_AcpTrak_0 : MC_BR_BarrierCommand_AcpTrak;
+	MC_BR_BarrierReadInfo_AcpTrak_0 : MC_BR_BarrierReadInfo_AcpTrak;
+END_VAR

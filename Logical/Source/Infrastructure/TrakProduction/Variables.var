@@ -1,0 +1,15 @@
+(*sequence control*)
+VAR
+	i : USINT; (*FOR LOOP index*)
+END_VAR
+(*internal data*)
+VAR
+	NumData : USINT; (*Amount of non-zero data of the producted pouches*)
+	ProductionData : ARRAY[0..5] OF UINT; (*Stores the production data every 10 seconds*)
+	ProductsPerMinute : REAL;
+END_VAR
+(*FUB*)
+VAR
+	TON_0 : TON;
+	MTDataMean_0 : MTDataMean;
+END_VAR

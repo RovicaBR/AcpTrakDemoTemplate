@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<OpcUaSource FileVersion="7" ArVersion="G4.90">
+  <Aliases>
+    <ACLAliases />
+    <EURangeViolationAliases />
+    <EURangesAliases>
+      <EURanges Id="2">
+        <EURange>
+          <Low ValueProvider="Const">5</Low>
+          <High ValueProvider="Const">40</High>
+        </EURange>
+      </EURanges>
+      <EURanges Id="4">
+        <EURange>
+          <Low ValueProvider="Const">0.5</Low>
+          <High ValueProvider="Const">4.0</High>
+        </EURange>
+      </EURanges>
+    </EURangesAliases>
+    <EngineeringUnitAliases>
+      <EngineeringUnit Id="1" UnitId="5067595" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="metre per second squared" Symbol="m/s²" />
+      <EngineeringUnit Id="2" UnitId="5067859" NameSpaceUri="http://www.opcfoundation.org/UA/units/un/cefact" Name="metre per second" Symbol="m/s" />
+    </EngineeringUnitAliases>
+  </Aliases>
+  <DefaultView>
+    <Module Name="&lt;Default&gt;">
+      <GlobalVariables Name="Global Variables">
+        <Variable Name="gTrakAsm">
+          <Variable Name="CmdPower" />
+          <Variable Name="CmdAllShuttleMoveVelocity" />
+        </Variable>
+        <Variable Name="gAccEmpty" EURangesId="2" EngineeringUnitId="1" />
+        <Variable Name="gAccFull" EURangesId="2" EngineeringUnitId="1" />
+        <Variable Name="gSpeedEmpty" EURangesId="4" EngineeringUnitId="2" />
+        <Variable Name="gSpeedFull" EURangesId="4" EngineeringUnitId="2" />
+        <Variable Name="gAlarmXCore" />
+      </GlobalVariables>
+      <Task Name="TrakProduc">
+        <Variable Name="MTDataMean_0">
+          <Variable Name="Reset" />
+          <Variable Name="Out" />
+        </Variable>
+      </Task>
+      <Task Name="TrakCtrl">
+        <Variable Name="SimNumShuttle" />
+      </Task>
+      <Task Name="TrakSvg">
+        <Variable Name="SvgTransform" />
+      </Task>
+    </Module>
+  </DefaultView>
+</OpcUaSource>

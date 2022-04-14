@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<?AutomationStudio FileVersion="4.9"?>
+<Configuration>
+  <Element ID="ProcessPointList_Template" Type="processpointlist">
+    <Selector ID="ProcessPoint[0]">
+      <Property ID="Name" Value="PP_Test" />
+      <Property ID="SectorRef" Value="SectorTrackA" />
+      <Property ID="TriggerEventBufferSize" Value="10" />
+      <Selector ID="BarrierFunctionality" Value="Off" />
+    </Selector>
+  </Element>
+  <Element ID="ProcessPointList_Machine" Type="processpointlist">
+    <Selector ID="ProcessPoint[0]">
+      <Property ID="Name" Value="PP_Init" />
+      <Property ID="SectorRef" Value="SectorTrackA" />
+      <Property ID="TriggerEventBufferSize" Value="10" />
+      <Selector ID="BarrierFunctionality" Value="On" />
+    </Selector>
+    <Selector ID="ProcessPoint[1]">
+      <Property ID="Name" Value="PP_Stop" />
+      <Property ID="SectorRef" Value="SectorTrackA" />
+      <Property ID="Position" Value="1.5" />
+      <Property ID="TriggerEventBufferSize" Value="10" />
+      <Selector ID="BarrierFunctionality" Value="On" />
+    </Selector>
+    <Selector ID="ProcessPoint[2]">
+      <Property ID="Name" Value="PP_Stop1" />
+      <Property ID="SectorRef" Value="SectorTrackA" />
+      <Property ID="Position" Value="3" />
+      <Property ID="TriggerEventBufferSize" Value="10" />
+      <Selector ID="BarrierFunctionality" Value="On" />
+    </Selector>
+  </Element>
+</Configuration>

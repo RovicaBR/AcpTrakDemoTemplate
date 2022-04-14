@@ -1,0 +1,11 @@
+(*sequence control*)
+VAR
+	i : UINT;
+END_VAR
+(*internal data*)
+VAR
+	SvgTransform : STRING[20000];
+	SvgAux : STRING[2];
+	ToggleVar : BOOL;
+	TON_0 : TON;
+END_VAR

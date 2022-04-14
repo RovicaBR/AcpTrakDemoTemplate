@@ -1,0 +1,13 @@
+(*interface assembly control*)
+VAR
+	gTrakAsm : TrakAsmType; (*trak assembly main interface structure*)
+END_VAR
+(*production control*)
+VAR
+	gProducedProduct : UINT; (*number of produced products (in ppm)*)
+END_VAR
+(*constants*)
+VAR CONSTANT
+	TRAK_MAX_SHUTTLE : UINT := 72; (*maximum number of shuttles handled in this application - should be set equal or higher than Shuttles-maximum-count setting in mappMotion assembly config file*)
+	TRAK_MAX_SEGMENT : UINT := 24; (*maximum number of segments handled in this application*)
+END_VAR

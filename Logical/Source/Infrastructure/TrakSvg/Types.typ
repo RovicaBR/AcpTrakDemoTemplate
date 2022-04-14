@@ -1,0 +1,11 @@
+
+TYPE
+	StepEnum : 
+		(
+		ASM_INIT,
+		ASM_GET_SEGMENT,
+		SEG_READ_STATUS,
+		SEG_READ_STATUS_WAIT,
+		READY
+		);
+END_TYPE

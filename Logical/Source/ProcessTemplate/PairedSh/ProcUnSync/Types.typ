@@ -1,0 +1,12 @@
+(*enum*)
+
+TYPE
+	StepEnum : 
+		(
+		CHECK_TRIGGER := 0,
+		GET_USERDATA,
+		SET_USERDATA,
+		SET_USERDATA_WAIT,
+		GO_TO_NEXT_STATION
+		);
+END_TYPE

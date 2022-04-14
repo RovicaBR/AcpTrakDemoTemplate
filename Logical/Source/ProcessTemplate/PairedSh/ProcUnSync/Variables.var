@@ -1,0 +1,33 @@
+(*process configuration*)
+VAR
+	PPAdr : UDINT;
+END_VAR
+(*commands*)
+VAR
+	CmdEnableProcess : BOOL;
+END_VAR
+(*sequence control*)
+VAR
+	Step : StepEnum;
+	ShuttleAxis : McAxisType;
+	ShuttleUserData : TrakShuttleUserDataType;
+END_VAR
+(*colour configuration*)
+VAR
+	Red : REAL;
+	Green : REAL;
+	Blue : REAL;
+END_VAR
+(*movement configuration*)
+VAR
+	Speed_OUT : REFERENCE TO REAL;
+	Acc_OUT : REFERENCE TO REAL;
+END_VAR
+(*process-point FUB*)
+VAR
+	MC_BR_TrgPointEnable_AcpTrak_0 : MC_BR_TrgPointEnable_AcpTrak;
+	MC_BR_TrgPointGetInfo_AcpTrak_0 : MC_BR_TrgPointGetInfo_AcpTrak;
+	MC_BR_ShCopyUserData_AcpTrak_0 : MC_BR_ShCopyUserData_AcpTrak;
+	MC_BR_BarrierReadInfo_AcpTrak_0 : MC_BR_BarrierReadInfo_AcpTrak;
+	MC_BR_ElasticMoveVel_AcpTrak_0 : MC_BR_ElasticMoveVel_AcpTrak;
+END_VAR

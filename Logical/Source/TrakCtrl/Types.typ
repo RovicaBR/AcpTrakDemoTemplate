@@ -1,0 +1,36 @@
+(*enum*)
+
+TYPE
+	TrakSimShuttleType : 	STRUCT 
+		SectorRef : REFERENCE TO McSectorType; (*add shuttle in simulation at sector - ADR(Sector_x)*)
+		Position : LREAL; (*add shuttle in simulation at position*)
+	END_STRUCT;
+	StepEnum : 
+		(
+		COMMAND := 0,
+		RESET,
+		ASM_POWER_ON := 10,
+		ASM_POWER_ON_WAIT,
+		GET_SEGMENT_INIT := 20,
+		GET_SEGMENT,
+		GET_SEGMENT_WAIT,
+		ADD_SHUTTLE_INIT := 30,
+		ADD_SHUTTLE,
+		ADD_SHUTTLE_WAIT,
+		GET_SHUTTLE_INIT := 40,
+		GET_SHUTTLE,
+		GET_SHUTTLE_WAIT,
+		ERROR := 99,
+		READY := 100,
+		ASM_POWER_OFF := 110,
+		ASM_POWER_OFF_WAIT,
+		ASM_SH_DELETE,
+		ASM_SH_DELETE_WAIT,
+		STOP_SHUTTLE := 120,
+		STOP_SHUTTLE_WAIT,
+		MOVE_SHUTTLE_VELOCITY := 130,
+		MOVE_SHUTTLE_VELOCITY_WAIT,
+		MOVE_SHUTTLE_POSITION := 140,
+		MOVE_SHUTTLE_POSITION_WAIT
+		);
+END_TYPE
