@@ -1,6 +1,7 @@
 (*process configuration*)
 VAR
 	PPAdr : UDINT;
+	PPDest : UDINT;
 END_VAR
 (*commands*)
 VAR

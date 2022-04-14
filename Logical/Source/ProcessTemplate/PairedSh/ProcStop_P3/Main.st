@@ -11,8 +11,12 @@ PROGRAM _INIT
 	(*******************************************************************)
 	(******************* Process Configuration *************************)
 	(*******************************************************************)
+	// Origin
 	PPAdr 	:= ADR(PP_Test); 		// <-- NAME A VALID PROCESS POINT
 	SecAdr	:= ADR(SectorTrackA);	// <-- NAME A VALID SECTOR
+	// Destination
+	PPDest 	:= ADR(PP_Test);		// <-- NAME A VALID PROCESS POINT
+	SecDest	:= ADR(SectorTrackA);	// <-- NAME A VALID SECTOR
 	(*** Define in/out speed & acceleration for this process ***)
 	// IN
 	Speed_IN ACCESS	ADR(gSpeedEmpty); 	// <-- Bind it to Empty / Full speed global variable
@@ -35,18 +39,31 @@ PROGRAM _INIT
 	
 	CmdEnableProcess 	:= TRUE;
 	Step 				:= CHECK_TRIGGER;
+	CntShuttle 			:= 1;
 	
+	// Check PPAdr position
 	MC_BR_ProcPointGetInfo_AcpTrak_0.ProcessPoint   := PPAdr; 
 	MC_BR_ProcPointGetInfo_AcpTrak_0.Execute		:= TRUE;
 	
 	REPEAT 
 		MC_BR_ProcPointGetInfo_AcpTrak_0();
-	UNTIL 
+		UNTIL 
 		MC_BR_ProcPointGetInfo_AcpTrak_0.Done OR MC_BR_ProcPointGetInfo_AcpTrak_0.Error
 	END_REPEAT;
 
 	ProcPointPos 	:= MC_BR_ProcPointGetInfo_AcpTrak_0.ProcPointInfo.SectorPosition.Position;
-	CntShuttle 		:= 1;
+	
+	// Check PPDest position
+	MC_BR_ProcPointGetInfo_AcpTrak_0.ProcessPoint   := PPDest; 
+	MC_BR_ProcPointGetInfo_AcpTrak_0.Execute		:= TRUE;
+	
+	REPEAT 
+		MC_BR_ProcPointGetInfo_AcpTrak_0();
+		UNTIL 
+		MC_BR_ProcPointGetInfo_AcpTrak_0.Done OR MC_BR_ProcPointGetInfo_AcpTrak_0.Error
+	END_REPEAT;
+
+	ProcPointPosDest 	:= MC_BR_ProcPointGetInfo_AcpTrak_0.ProcPointInfo.SectorPosition.Position;
 	
 END_PROGRAM
 
@@ -217,15 +234,18 @@ PROGRAM _CYCLIC
 			(* go to next station *)
 		GO_TO_NEXT_STATION:
 			
-			MC_BR_ElasticMoveVel_AcpTrak_0.Axis           := ADR(ShuttleAxis[1]);
-			MC_BR_ElasticMoveVel_AcpTrak_0.Execute        := TRUE;
-			
-			MC_BR_ElasticMoveVel_AcpTrak_1.Axis           := ADR(ShuttleAxis[3]);
-			MC_BR_ElasticMoveVel_AcpTrak_1.Execute        := TRUE;
-			
-			MC_BR_ElasticMoveVel_AcpTrak_2.Axis           := ADR(ShuttleAxis[5]);
-			MC_BR_ElasticMoveVel_AcpTrak_2.Execute        := TRUE;
+			MC_BR_RoutedMoveAbs_AcpTrak_3.Axis           := ADR(ShuttleAxis[1]);
+			MC_BR_RoutedMoveAbs_AcpTrak_3.Position		 := ProcPointPosDest + 0.01;
+			MC_BR_RoutedMoveAbs_AcpTrak_3.Execute        := TRUE;
+		
+			MC_BR_RoutedMoveAbs_AcpTrak_4.Axis           := ADR(ShuttleAxis[3]);
+			MC_BR_RoutedMoveAbs_AcpTrak_4.Position		 := ProcPointPosDest + 0.01;
+			MC_BR_RoutedMoveAbs_AcpTrak_4.Execute        := TRUE;
 	
+			MC_BR_RoutedMoveAbs_AcpTrak_5.Axis           := ADR(ShuttleAxis[5]);
+			MC_BR_RoutedMoveAbs_AcpTrak_5.Position		 := ProcPointPosDest + 0.01;
+			MC_BR_RoutedMoveAbs_AcpTrak_5.Execute        := TRUE;
+
 			IF ReleaseSts THEN
 				gProducedProduct := gProducedProduct + 3;
 			END_IF
@@ -271,33 +291,27 @@ PROGRAM _CYCLIC
 	MC_BR_RoutedMoveAbs_AcpTrak_2.Deceleration	  := Acc_IN;
 	MC_BR_RoutedMoveAbs_AcpTrak_2();
 	MC_BR_RoutedMoveAbs_AcpTrak_2.Execute := FALSE;
-	// MC_BR_ElasticMoveVel_AcpTrak_0
-	MC_BR_ElasticMoveVel_AcpTrak_0.Velocity       := Speed_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_0.Acceleration   := Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_0.Deceleration   := Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_0.Jerk           := 0.0;
-	MC_BR_ElasticMoveVel_AcpTrak_0.Direction	  := mcDIR_POSITIVE;
-	MC_BR_ElasticMoveVel_AcpTrak_0.BufferMode     := mcABORTING;
-	MC_BR_ElasticMoveVel_AcpTrak_0();
-	MC_BR_ElasticMoveVel_AcpTrak_0.Execute := FALSE;
-	// MC_BR_ElasticMoveVel_AcpTrak_1
-	MC_BR_ElasticMoveVel_AcpTrak_1.Velocity       := Speed_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_1.Acceleration   := Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_1.Deceleration   := Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_1.Jerk           := 0.0;
-	MC_BR_ElasticMoveVel_AcpTrak_1.Direction	  := mcDIR_POSITIVE;
-	MC_BR_ElasticMoveVel_AcpTrak_1.BufferMode     := mcABORTING;
-	MC_BR_ElasticMoveVel_AcpTrak_1();
-	MC_BR_ElasticMoveVel_AcpTrak_1.Execute := FALSE;
-	// MC_BR_ElasticMoveVel_AcpTrak_2
-	MC_BR_ElasticMoveVel_AcpTrak_2.Velocity       := Speed_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_2.Acceleration   := Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_2.Deceleration   := Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_2.Jerk           := 0.0;
-	MC_BR_ElasticMoveVel_AcpTrak_2.Direction	  := mcDIR_POSITIVE;
-	MC_BR_ElasticMoveVel_AcpTrak_2.BufferMode     := mcABORTING;
-	MC_BR_ElasticMoveVel_AcpTrak_2();
-	MC_BR_ElasticMoveVel_AcpTrak_2.Execute := FALSE;
+	// MC_BR_RoutedMoveAbs_AcpTrak_3
+	MC_BR_RoutedMoveAbs_AcpTrak_3.Sector 		  := SecDest;
+	MC_BR_RoutedMoveAbs_AcpTrak_3.Velocity		  := Speed_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_3.Acceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_3.Deceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_3();
+	MC_BR_RoutedMoveAbs_AcpTrak_3.Execute := FALSE;
+	// MC_BR_RoutedMoveAbs_AcpTrak_4
+	MC_BR_RoutedMoveAbs_AcpTrak_4.Sector 		  := SecDest;
+	MC_BR_RoutedMoveAbs_AcpTrak_4.Velocity		  := Speed_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_4.Acceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_4.Deceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_4();
+	MC_BR_RoutedMoveAbs_AcpTrak_4.Execute := FALSE;
+	// MC_BR_RoutedMoveAbs_AcpTrak_5
+	MC_BR_RoutedMoveAbs_AcpTrak_5.Sector 		  := SecDest;
+	MC_BR_RoutedMoveAbs_AcpTrak_5.Velocity		  := Speed_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_5.Acceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_5.Deceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_5();
+	MC_BR_RoutedMoveAbs_AcpTrak_5.Execute := FALSE;
 	// MC_ReadStatus
 	MC_ReadStatus_0();
 	MC_ReadStatus_1();

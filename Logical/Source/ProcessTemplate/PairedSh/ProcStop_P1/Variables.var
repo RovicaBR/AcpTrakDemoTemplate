@@ -2,6 +2,8 @@
 VAR
 	PPAdr : UDINT;
 	SecAdr : UDINT;
+	PPDest : UDINT;
+	SecDest : UDINT;
 END_VAR
 (*commands*)
 VAR
@@ -14,6 +16,7 @@ VAR
 	ShuttleUserData : ARRAY[1..2] OF TrakShuttleUserDataType;
 	WaitTime : UDINT := 500;
 	ProcPointPos : LREAL;
+	ProcPointPosDest : LREAL;
 	CntShuttle : USINT;
 	ReleaseSts : BOOL;
 END_VAR
@@ -37,7 +40,7 @@ VAR
 	MC_BR_TrgPointGetInfo_AcpTrak_0 : MC_BR_TrgPointGetInfo_AcpTrak;
 	MC_BR_ShCopyUserData_AcpTrak_0 : MC_BR_ShCopyUserData_AcpTrak;
 	MC_BR_RoutedMoveAbs_AcpTrak_0 : MC_BR_RoutedMoveAbs_AcpTrak;
-	MC_BR_ElasticMoveVel_AcpTrak_0 : MC_BR_ElasticMoveVel_AcpTrak;
+	MC_BR_RoutedMoveAbs_AcpTrak_1 : MC_BR_RoutedMoveAbs_AcpTrak;
 	MC_BR_ProcPointGetInfo_AcpTrak_0 : MC_BR_ProcPointGetInfo_AcpTrak;
 	TON_0 : TON;
 END_VAR
