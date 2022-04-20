@@ -53,16 +53,16 @@ PROGRAM _INIT
 	ProcPointPos 	:= MC_BR_ProcPointGetInfo_AcpTrak_0.ProcPointInfo.SectorPosition.Position;
 	
 	// Check PPDest position
-	MC_BR_ProcPointGetInfo_AcpTrak_0.ProcessPoint   := PPDest; 
-	MC_BR_ProcPointGetInfo_AcpTrak_0.Execute		:= TRUE;
+	MC_BR_ProcPointGetInfo_AcpTrak_1.ProcessPoint   := PPDest; 
+	MC_BR_ProcPointGetInfo_AcpTrak_1.Execute		:= TRUE;
 	
 	REPEAT 
-		MC_BR_ProcPointGetInfo_AcpTrak_0();
+		MC_BR_ProcPointGetInfo_AcpTrak_1();
 		UNTIL 
-		MC_BR_ProcPointGetInfo_AcpTrak_0.Done OR MC_BR_ProcPointGetInfo_AcpTrak_0.Error
+		MC_BR_ProcPointGetInfo_AcpTrak_1.Done OR MC_BR_ProcPointGetInfo_AcpTrak_1.Error
 	END_REPEAT;
 
-	ProcPointPosDest 	:= MC_BR_ProcPointGetInfo_AcpTrak_0.ProcPointInfo.SectorPosition.Position;
+	ProcPointPosDest 	:= MC_BR_ProcPointGetInfo_AcpTrak_1.ProcPointInfo.SectorPosition.Position;
 	
 END_PROGRAM
 
@@ -213,11 +213,11 @@ PROGRAM _CYCLIC
 		GO_TO_NEXT_STATION:
 			
 			MC_BR_RoutedMoveAbs_AcpTrak_2.Axis           := ADR(ShuttleAxis[1]);
-			MC_BR_RoutedMoveAbs_AcpTrak_2.Position		 := ProcPointPosDest + 0.01;
+			MC_BR_RoutedMoveAbs_AcpTrak_2.Position		 := ProcPointPosDest + 0.05;
 			MC_BR_RoutedMoveAbs_AcpTrak_2.Execute        := TRUE;
 		
 			MC_BR_RoutedMoveAbs_AcpTrak_3.Axis           := ADR(ShuttleAxis[3]);
-			MC_BR_RoutedMoveAbs_AcpTrak_3.Position		 := ProcPointPosDest + 0.01;
+			MC_BR_RoutedMoveAbs_AcpTrak_3.Position		 := ProcPointPosDest + 0.05;
 			MC_BR_RoutedMoveAbs_AcpTrak_3.Execute        := TRUE;
 			
 			IF ReleaseSts THEN
