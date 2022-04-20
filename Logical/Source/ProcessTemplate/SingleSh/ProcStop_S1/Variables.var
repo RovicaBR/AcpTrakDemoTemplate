@@ -47,6 +47,7 @@ VAR
 	MC_BR_RoutedMoveAbs_AcpTrak_0 : MC_BR_RoutedMoveAbs_AcpTrak;
 	MC_BR_RoutedMoveAbs_AcpTrak_1 : MC_BR_RoutedMoveAbs_AcpTrak;
 	MC_BR_ProcPointGetInfo_AcpTrak_0 : MC_BR_ProcPointGetInfo_AcpTrak;
+	MC_BR_ProcPointGetInfo_AcpTrak_1 : MC_BR_ProcPointGetInfo_AcpTrak;
 	TON_0 : TON;
 END_VAR
 (*FUB - Barrier*)

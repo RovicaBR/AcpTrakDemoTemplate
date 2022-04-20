@@ -17,7 +17,6 @@ PROGRAM _INIT
 	// Destination
 	PPDest 	:= ADR(PP_Test);		// <-- NAME A VALID PROCESS POINT
 	SecDest	:= ADR(SectorTrackA);	// <-- NAME A VALID SECTOR
-	SecAdr	:= ADR(SectorTrackA);	// <-- NAME A VALID SECTOR
 	(*** Define in/out speed & acceleration for this process ***)
 	// IN
 	Speed_IN ACCESS	ADR(gSpeedEmpty); 	// <-- Bind it to Empty / Full speed global variable
@@ -56,16 +55,16 @@ PROGRAM _INIT
 	ProcPointPos 	:= MC_BR_ProcPointGetInfo_AcpTrak_0.ProcPointInfo.SectorPosition.Position;
 	
 	// Check PPDest position
-	MC_BR_ProcPointGetInfo_AcpTrak_0.ProcessPoint   := PPDest; 
-	MC_BR_ProcPointGetInfo_AcpTrak_0.Execute		:= TRUE;
+	MC_BR_ProcPointGetInfo_AcpTrak_1.ProcessPoint   := PPDest; 
+	MC_BR_ProcPointGetInfo_AcpTrak_1.Execute		:= TRUE;
 	
 	REPEAT 
-		MC_BR_ProcPointGetInfo_AcpTrak_0();
+		MC_BR_ProcPointGetInfo_AcpTrak_1();
 		UNTIL 
-		MC_BR_ProcPointGetInfo_AcpTrak_0.Done OR MC_BR_ProcPointGetInfo_AcpTrak_0.Error
+		MC_BR_ProcPointGetInfo_AcpTrak_1.Done OR MC_BR_ProcPointGetInfo_AcpTrak_1.Error
 	END_REPEAT;
 
-	ProcPointPosDest 	:= MC_BR_ProcPointGetInfo_AcpTrak_0.ProcPointInfo.SectorPosition.Position;
+	ProcPointPosDest 	:= MC_BR_ProcPointGetInfo_AcpTrak_1.ProcPointInfo.SectorPosition.Position;
 	
 END_PROGRAM
 
@@ -239,8 +238,8 @@ PROGRAM _CYCLIC
 			(* go to next station *)
 		GO_TO_NEXT_STATION:
 			
-			MC_BR_RoutedMoveAbs_AcpTrak_1.Axis           := ADR(ShuttleAxis);
-			MC_BR_RoutedMoveAbs_AcpTrak_1.Position		 := ProcPointPosDest + 0.01;
+			MC_BR_RoutedMoveAbs_AcpTrak_1.Axis           := ADR(ShuttleAxis[CntShuttle]);
+			MC_BR_RoutedMoveAbs_AcpTrak_1.Position		 := ProcPointPosDest + 0.05;
 			MC_BR_RoutedMoveAbs_AcpTrak_1.Execute        := TRUE;
 			
 			IF ReleaseSts THEN

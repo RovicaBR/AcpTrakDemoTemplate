@@ -48,6 +48,7 @@ VAR
 	MC_BR_RoutedMoveAbs_AcpTrak_4 : MC_BR_RoutedMoveAbs_AcpTrak;
 	MC_BR_RoutedMoveAbs_AcpTrak_5 : MC_BR_RoutedMoveAbs_AcpTrak;
 	MC_BR_ProcPointGetInfo_AcpTrak_0 : MC_BR_ProcPointGetInfo_AcpTrak;
+	MC_BR_ProcPointGetInfo_AcpTrak_1 : MC_BR_ProcPointGetInfo_AcpTrak;
 	MC_ReadStatus_0 : MC_ReadStatus;
 	MC_ReadStatus_1 : MC_ReadStatus;
 	MC_ReadStatus_2 : MC_ReadStatus;
