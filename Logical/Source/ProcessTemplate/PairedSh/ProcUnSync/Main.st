@@ -10,7 +10,11 @@ PROGRAM _INIT
 	(*******************************************************************)
 	(******************* Process Configuration *************************)
 	(*******************************************************************)
+	// Origin
 	PPAdr 	:= ADR(PP_Test); 	// <-- NAME A VALID PROCESS POINT
+	// Destination
+	PPDest 	:= ADR(PP_Test);		// <-- NAME A VALID PROCESS POINT
+	SecDest	:= ADR(SectorTrackA);	// <-- NAME A VALID SECTOR
 	(*** Define in/out speed & acceleration for this process ***)
 	// OUT
 	Speed_OUT ACCESS ADR(gSpeedEmpty); 	// <-- Bind it to Empty / Full speed global variable
@@ -26,6 +30,18 @@ PROGRAM _INIT
 	(* Processpointreference for Functionblocks *)
 	MC_BR_TrgPointEnable_AcpTrak_0.ProcessPoint 	:= PPAdr; // <-- NAME A VALID PROCESS POINT
 	MC_BR_TrgPointGetInfo_AcpTrak_0.ProcessPoint 	:= PPAdr;	// <-- NAME A VALID PROCESS POINT
+	
+	// Check PPDest position
+	MC_BR_ProcPointGetInfo_AcpTrak_0.ProcessPoint   := PPDest; 
+	MC_BR_ProcPointGetInfo_AcpTrak_0.Execute		:= TRUE;
+	
+	REPEAT 
+		MC_BR_ProcPointGetInfo_AcpTrak_0();
+		UNTIL 
+		MC_BR_ProcPointGetInfo_AcpTrak_0.Done OR MC_BR_ProcPointGetInfo_AcpTrak_0.Error
+	END_REPEAT;
+
+	ProcPointPosDest 	:= MC_BR_ProcPointGetInfo_AcpTrak_0.ProcPointInfo.SectorPosition.Position;
 	
 END_PROGRAM
 
@@ -100,8 +116,9 @@ PROGRAM _CYCLIC
 		
 		GO_TO_NEXT_STATION:
 		
-			MC_BR_ElasticMoveVel_AcpTrak_0.Axis 	:= ADR(ShuttleAxis);
-			MC_BR_ElasticMoveVel_AcpTrak_0.Execute	:= TRUE;
+			MC_BR_RoutedMoveAbs_AcpTrak_0.Axis           := ADR(ShuttleAxis);
+			MC_BR_RoutedMoveAbs_AcpTrak_0.Position		 := ProcPointPosDest + 0.05;
+			MC_BR_RoutedMoveAbs_AcpTrak_0.Execute        := TRUE;
 		
 			Step := CHECK_TRIGGER;
 		
