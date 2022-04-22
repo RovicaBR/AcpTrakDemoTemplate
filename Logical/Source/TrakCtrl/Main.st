@@ -1,22 +1,14 @@
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// 
-// Copyright B&R Industrial Automation GmbH
-// Author    B&R
-// Created   Feb 1, 2018
-// 
-// trak assembly basic control task
-// TC#1 => preferred to be attached to mappMotion task class
-// 
-// * assembly startup sequence
-// * ErrorStop handling
-// * basic shuttle handling
-// * aggregated shuttle move commands
-// 
-// "gTrakAsm" - global interface structure
-//
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
- 
+(*********************************************************************************
+ * Copyright: 	B&R Industrial Automation GmbH 
+ * Author:    	B&R
+ * Created:   	February 1, 2018 
+ * Description:	Trak assembly basic control task.
+				* Assembly startup sequence
+ 				* ErrorStop handling
+ 				* Basic shuttle handling
+ 				* Aggregated shuttle move commands
+ * Mandatory: 	YES - Should be always included.
+ *********************************************************************************) 
  
 PROGRAM _INIT
 

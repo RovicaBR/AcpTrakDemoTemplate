@@ -11,9 +11,9 @@ PROGRAM _INIT
 	(******************* Process Configuration *************************)
 	(*******************************************************************)
 	// Origin
-	PPAdr 	:= ADR(PP_Test); 	// <-- NAME A VALID PROCESS POINT
+	PPAdr 	:= ADR(PP_XXX); 	// <-- NAME A VALID PROCESS POINT
 	// Destination
-	PPDest 	:= ADR(PP_Test);		// <-- NAME A VALID PROCESS POINT
+	PPDest 	:= ADR(PP_XXX);		// <-- NAME A VALID PROCESS POINT
 	SecDest	:= ADR(SectorTrackA);	// <-- NAME A VALID SECTOR
 	(*** Define in/out speed & acceleration for this process ***)
 	// OUT
@@ -133,12 +133,12 @@ PROGRAM _CYCLIC
 	// MC_BR_ShCopyUserData_AcpTrak
 	MC_BR_ShCopyUserData_AcpTrak_0();
 	MC_BR_ShCopyUserData_AcpTrak_0.Execute 	 := FALSE;
-	//MC_BR_ElasticMoveVel_AcpTrak_0
-	MC_BR_ElasticMoveVel_AcpTrak_0.Velocity		:= Speed_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_0.Acceleration	:= Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_0.Deceleration	:= Acc_OUT;
-	MC_BR_ElasticMoveVel_AcpTrak_0.Direction	:= mcDIR_POSITIVE;
-	MC_BR_ElasticMoveVel_AcpTrak_0();
-	MC_BR_ElasticMoveVel_AcpTrak_0.Execute		:= FALSE;
+	// MC_BR_RoutedMoveAbs_AcpTrak_0
+	MC_BR_RoutedMoveAbs_AcpTrak_0.Sector 		  := SecDest;
+	MC_BR_RoutedMoveAbs_AcpTrak_0.Velocity		  := Speed_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_0.Acceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_0.Deceleration	  := Acc_OUT;
+	MC_BR_RoutedMoveAbs_AcpTrak_0();
+	MC_BR_RoutedMoveAbs_AcpTrak_0.Execute := FALSE;
 	
 END_PROGRAM

@@ -31,7 +31,6 @@ VAR
 	MC_BR_TrgPointEnable_AcpTrak_0 : MC_BR_TrgPointEnable_AcpTrak;
 	MC_BR_TrgPointGetInfo_AcpTrak_0 : MC_BR_TrgPointGetInfo_AcpTrak;
 	MC_BR_ShCopyUserData_AcpTrak_0 : MC_BR_ShCopyUserData_AcpTrak;
-	MC_BR_BarrierReadInfo_AcpTrak_0 : MC_BR_BarrierReadInfo_AcpTrak;
 	MC_BR_RoutedMoveAbs_AcpTrak_0 : MC_BR_RoutedMoveAbs_AcpTrak;
 	MC_BR_ProcPointGetInfo_AcpTrak_0 : MC_BR_ProcPointGetInfo_AcpTrak;
 END_VAR

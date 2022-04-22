@@ -13,9 +13,9 @@ PROGRAM _INIT
 	(******************* Process Configuration *************************)
 	(*******************************************************************)
 	// Origin
-	PPAdr 	:= ADR(PP_Test); 		// <-- NAME A VALID PROCESS POINT
+	PPAdr 	:= ADR(PP_XXX); 		// <-- NAME A VALID PROCESS POINT
 	// Destination
-	PPDest 	:= ADR(PP_Test);		// <-- NAME A VALID PROCESS POINT
+	PPDest 	:= ADR(PP_XXX);		// <-- NAME A VALID PROCESS POINT
 	SecDest	:= ADR(SectorTrackA);	// <-- NAME A VALID SECTOR
 	(*** Define in/out speed & acceleration for this process ***)
 	// OUT
