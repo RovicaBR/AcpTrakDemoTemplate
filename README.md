@@ -11,11 +11,17 @@ This is an ACOPOStrak demo project template developed by B&R Spain. The aim of t
 
 The project contains some tasks that can be easily adapted to fit almost any initial setup. Based on our previous experience developing customized demo simulations, we classified the tasks in 2 different groups.
 
-* Single shuttle operations.
+* Single shuttle operations: The shuttles will be operated individually. In that case, before entering to a process station 
 
-![image](https://user-images.githubusercontent.com/75721256/164710478-90081425-3dea-41ff-a0dc-0b312ed409bd.png)
+<img src="https://user-images.githubusercontent.com/75721256/164710478-90081425-3dea-41ff-a0dc-0b312ed409bd.png" alt="drawing" style="width:400px;"/>
 
-* Paired shuttle operations.
+One possible simulation layout could be such as:
+
+<img src="https://user-images.githubusercontent.com/75721256/164711783-5117ac20-48ff-4183-9751-b03c63cefb92.png" alt="drawing" style="width:600px;"/>
+
+* Paired shuttle operations: The shuttles will be operated in pairs.
+<img src="https://user-images.githubusercontent.com/75721256/164710939-2ef5bcee-3773-4fad-a3a8-ca6a161ec132.png" alt="drawing" style="width:400px;"/>
+
 
 <a name="Requirements"></a>
 ## Requirements
