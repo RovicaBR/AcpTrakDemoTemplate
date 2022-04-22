@@ -12,6 +12,9 @@ This is an ACOPOStrak demo project template developed by B&R Spain. The aim of t
 The project contains some tasks that can be easily adapted to fit almost any initial setup. Based on our previous experience developing customized demo simulations, we classified the tasks in 2 different groups.
 
 * Single shuttle operations.
+
+![image](https://user-images.githubusercontent.com/75721256/164710478-90081425-3dea-41ff-a0dc-0b312ed409bd.png)
+
 * Paired shuttle operations.
 
 <a name="Requirements"></a>
