@@ -66,8 +66,6 @@ Each task has its own configuration parameters in the **_INIT** subroutine.
 
 They will need to be changed or adapted according for each task.
 
-<img src="https://user-images.githubusercontent.com/75721256/165058980-fd937d33-c51e-439c-aef1-e8bee65ee1c3.png" alt="drawing" style="width:700px;"/>
-
 * **PPAdr**: Process point of the actual station.
 * **SecAdr**: Sector of the actual station.
 * **PPDest**: Process point of the next station.
@@ -80,6 +78,10 @@ They will need to be changed or adapted according for each task.
 * **DistTravelled/1/2**: Stopping distance (from the processpoint) for each shuttle.
 * **ReleaseSts**: Defines if the station is a "release station". If it is, the output production in ppm will be increased by this station.
 * **Red,Green,Blue**: RBG shuttle color configuration (from 0 to 1) after the process is completed. 
+
+Example:
+
+<img src="https://user-images.githubusercontent.com/75721256/165058980-fd937d33-c51e-439c-aef1-e8bee65ee1c3.png" alt="drawing" style="width:700px;"/>
 
 #### 6. Perform an "Offline Installation".
 After all the tasks are correctly configured and added to the software configuration, the project can be transfered to ArSim using an offline installation.
