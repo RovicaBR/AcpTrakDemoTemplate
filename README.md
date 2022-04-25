@@ -58,19 +58,35 @@ After the layout has been defined, the **.assembly**, **.sector** and **.process
 
 #### 4. Add as many tasks as needed in your "ProcessMachine" folder from the Logical View. 
 
-Depending on how your product will be carried (between one or two shuttles), use the tasks inside the "SingleSh" and "PairedSh" folders. Notice that in the task header it is indicated if the task should be always included (mandatory) in your simulation or not. 
+Depending on how your product will be carried (between one or two shuttles), use the tasks inside the "SingleSh" or "PairedSh" folders. Notice that in the task header it is indicated if the task should be always included (mandatory) in your simulation or not. 
 
 #### 5. Change the configuration parameters from each task.
 
-![image](https://user-images.githubusercontent.com/75721256/165058980-fd937d33-c51e-439c-aef1-e8bee65ee1c3.png)
+Each task has its own configuration parameters in the **_INIT** subroutine.
 
+They will need to be changed or adapted according for each task.
 
-#### X. Perform an "Offline Installation".
-Make sure that the project has been transfered to ArSim using an offline installation.
+<img src="https://user-images.githubusercontent.com/75721256/165058980-fd937d33-c51e-439c-aef1-e8bee65ee1c3.png" alt="drawing" style="width:700px;"/>
 
-#### X. Open the automatically generated .scn file with SceneViewer.
+* **PPAdr**: Process point of the actual station.
+* **SecAdr**: Sector of the actual station.
+* **PPDest**: Process point of the next station.
+* **SecDest**: Sector of the next station.
+* **Speed_IN**: Entry station speed. (Should be the same as the output station speed from the previous station).
+* **Acc_IN**: Entry station acceleration. (Should be the same as the output station acceleration from the previous station).
+* **Speed_OUT**: Output station speed. 
+* **Acc_OUT**: Output station acceleration.
+* **WaitTime**: Station waitting time in ms.
+* **DistTravelled/1/2**: Stopping distance (from the processpoint) for each shuttle.
+* **ReleaseSts**: Defines if the station is a "release station". If it is, the output production in ppm will be increased by this station.
+* **Red,Green,Blue**: RBG shuttle color configuration (from 0 to 1) after the process is completed. 
+
+#### 6. Perform an "Offline Installation".
+After all the tasks are correctly configured and added to the software configuration, the project can be transfered to ArSim using an offline installation.
+
+#### 7. Open the automatically generated .scn file with SceneViewer.
 After the file is opened, establish communication via OPC UA.
 
-#### X. Open the mappView HMI
+#### 8. Open the mappView HMI
 Access the HMI via http://127.0.0.1:81/index.html?visuId=Visu. Through the user interface, you will be able define several parameters from the simulation.
 
