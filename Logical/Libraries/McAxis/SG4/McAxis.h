@@ -1,6 +1,6 @@
 /* Automation Studio generated header file */
 /* Do not edit ! */
-/* McAxis 5.18.0 */
+/* McAxis 5.24.1 */
 
 #ifndef _MCAXIS_
 #define _MCAXIS_
@@ -9,7 +9,7 @@ extern "C"
 {
 #endif
 #ifndef _McAxis_VERSION
-#define _McAxis_VERSION 5.18.0
+#define _McAxis_VERSION 5.24.1
 #endif
 
 #include <bur/plctypes.h>
@@ -311,7 +311,8 @@ typedef enum McAxisTypeEnum
 	mcAX_TYPE_PURE_VIRT,
 	mcAX_TYPE_PURE_VIRT_GPAI,
 	mcAX_TYPE_DS402_SERVO,
-	mcAX_TYPE_DS402_INV
+	mcAX_TYPE_DS402_INV,
+	mcAX_TYPE_PURE_VIRT_EXT_ENC
 } McAxisTypeEnum;
 
 typedef enum McAcpAxAutoTuneFeedFwdModeEnum
@@ -421,6 +422,22 @@ typedef enum McAMoveLimDecEnum
 {	mcAMLD_BASIC = 0,
 	mcAMLD_ADV = 1
 } McAMoveLimDecEnum;
+
+typedef enum McAFPGJFEnum
+{	mcAFPGJF_NOT_USE = 0,
+	mcAFPGJF_USE = 1,
+	mcAFPGJF_JERK_LIM = 2
+} McAFPGJFEnum;
+
+typedef enum McAFPGZVFEnum
+{	mcAFPGZVF_NOT_USE = 0,
+	mcAFPGZVF_USE = 1
+} McAFPGZVFEnum;
+
+typedef enum McAFPGCSMaSetValSrcEnum
+{	mcAFPGCSMSVS_PROF_GEN_SET_POS = 0,
+	mcAFPGCSMSVS_ACP_SET_POS = 1
+} McAFPGCSMaSetValSrcEnum;
 
 typedef enum McAFDCSTypEnum
 {	mcAFDCST_ACP = 0
@@ -685,6 +702,10 @@ typedef enum McAFANERNetwErrReacEnum
 {	mcAFANERNER_DEF = 0,
 	mcAFANERNER_DELAYED = 1
 } McAFANERNetwErrReacEnum;
+
+typedef struct McAdvCycDriveErrDecParType
+{	enum McDisableModeEnum DisableMode;
+} McAdvCycDriveErrDecParType;
 
 typedef struct McLibraryInfoType
 {	plcstring Name[33];
@@ -1124,7 +1145,7 @@ typedef struct McHwInfoDriveType
 {	plcstring ModelNumber[20];
 	plcstring ModuleID[12];
 	plcstring SerialNumber[20];
-	plcstring Revision[4];
+	plcstring Revision[12];
 	plcstring FirmwareVersion[8];
 } McHwInfoDriveType;
 
@@ -1263,6 +1284,58 @@ typedef struct McCfgAxBaseTypType
 typedef struct McCfgAxMoveLimType
 {	struct McAMLType MovementLimits;
 } McCfgAxMoveLimType;
+
+typedef struct McAFPGJFUseType
+{	float MaximumJerkTime;
+	float JerkTime;
+} McAFPGJFUseType;
+
+typedef struct McAFPGJFJerkLimType
+{	float JerkLimit;
+} McAFPGJFJerkLimType;
+
+typedef struct McAFPGJFType
+{	enum McAFPGJFEnum Type;
+	struct McAFPGJFUseType Used;
+	struct McAFPGJFJerkLimType JerkLimited;
+} McAFPGJFType;
+
+typedef struct McAFPGZVFUseType
+{	float MaximumZeroVibrationFilterTime;
+	float ZeroVibrationFilterCoefficient;
+	float ZeroVibrationFilterTime;
+} McAFPGZVFUseType;
+
+typedef struct McAFPGZVFType
+{	enum McAFPGZVFEnum Type;
+	struct McAFPGZVFUseType Used;
+} McAFPGZVFType;
+
+typedef struct McAFPGCSMaSetValSrcType
+{	enum McAFPGCSMaSetValSrcEnum Type;
+} McAFPGCSMaSetValSrcType;
+
+typedef struct McAFPGCSType
+{	struct McAFPGCSMaSetValSrcType MasterSetValueSource;
+} McAFPGCSType;
+
+typedef struct McCfgAxFeatProfGenType
+{	struct McAFPGJFType JerkFilter;
+	struct McAFPGZVFType ZeroVibrationFilter;
+	struct McAFPGCSType CouplingSettings;
+} McCfgAxFeatProfGenType;
+
+typedef struct McCfgAxFeatPgJerkFltrType
+{	struct McAFPGJFType JerkFilter;
+} McCfgAxFeatPgJerkFltrType;
+
+typedef struct McCfgAxFeatPgZeroVibFltrType
+{	struct McAFPGZVFType ZeroVibrationFilter;
+} McCfgAxFeatPgZeroVibFltrType;
+
+typedef struct McCfgAxFeatPgCplgSetType
+{	struct McAFPGCSType CouplingSettings;
+} McCfgAxFeatPgCplgSetType;
 
 typedef struct McAFDCSTypAcpValSrcRTOAUseType
 {	struct McCfgReferenceType AxisReference;
@@ -1656,6 +1729,24 @@ typedef struct McAFANERNetwErrReacType
 typedef struct McCfgAxFeatAcpNetwErrReacType
 {	struct McAFANERNetwErrReacType NetworkErrorReaction;
 } McCfgAxFeatAcpNetwErrReacType;
+
+typedef struct MC_BR_CyclicDriveErrorDecel
+{
+	/* VAR_INPUT (analog) */
+	struct McAxisType* Axis;
+	struct McAdvCycDriveErrDecParType AdvancedParameters;
+	float CyclicDeceleration;
+	/* VAR_OUTPUT (analog) */
+	signed long ErrorID;
+	/* VAR (analog) */
+	struct McInternalType Internal;
+	/* VAR_INPUT (digital) */
+	plcbit Enable;
+	/* VAR_OUTPUT (digital) */
+	plcbit Valid;
+	plcbit Busy;
+	plcbit Error;
+} MC_BR_CyclicDriveErrorDecel_typ;
 
 typedef struct MC_BR_GetAxisLibraryInfo
 {
@@ -3261,6 +3352,7 @@ typedef struct MC_WriteDigitalOutput
 
 
 /* Prototyping of functions and function blocks */
+_BUR_PUBLIC void MC_BR_CyclicDriveErrorDecel(struct MC_BR_CyclicDriveErrorDecel* inst);
 _BUR_PUBLIC void MC_BR_GetAxisLibraryInfo(struct MC_BR_GetAxisLibraryInfo* inst);
 _BUR_PUBLIC void MC_Power(struct MC_Power* inst);
 _BUR_PUBLIC void MC_Home(struct MC_Home* inst);

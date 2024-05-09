@@ -37,6 +37,40 @@ FUNCTION_BLOCK MC_BR_AsmPowerOff_AcpTrak (*Switches on/off the controllers of th
 	END_VAR
 END_FUNCTION_BLOCK
 
+FUNCTION_BLOCK MC_BR_AsmSegGrpPowerOn_AcpTrak (*Switches on the controllers of all Segments in the specified Segment-group.*)
+	VAR_INPUT
+		Assembly : REFERENCE TO McAssemblyType; (*The assembly reference establishes the connection between the function block and the assembly.*)
+		Execute : BOOL; (*Execution of the function block begins on a rising edge of this input.*)
+		SegmentGroup : STRING[32]; (*Segment group reference specifying a set of segments of the assembly.*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Execution successful. Function block is finished.*)
+		Busy : BOOL; (*Function block is active and must continue to be called.*)
+		CommandAborted : BOOL; (*Command aborted by another command.*)
+		Error : BOOL; (*Execution error*)
+		ErrorID : DINT; (*Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_AsmSegGrpPowerOff_AcpTrak (*Switches off the controllers of all Segments in the specified Segment-group.*)
+	VAR_INPUT
+		Assembly : REFERENCE TO McAssemblyType; (*The assembly reference establishes the connection between the function block and the assembly.*)
+		Execute : BOOL; (*Execution of the function block begins on a rising edge of this input.*)
+		SegmentGroup : STRING[32]; (*Segment group reference specifying a set of segments of the assembly.*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Execution successful. Function block is finished.*)
+		Busy : BOOL; (*Function block is active and must continue to be called.*)
+		Error : BOOL; (*Execution error*)
+		ErrorID : DINT; (*Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK
 
 FUNCTION_BLOCK MC_BR_AsmReadStatus_AcpTrak (*Provides the current status (see State diagram) of the assembly.*)
 	VAR_INPUT
@@ -1321,6 +1355,76 @@ FUNCTION_BLOCK MC_BR_ShInteractCmd_AcpTrak (*add/remove a shuttle pair at collis
 		Execute: BOOL; (*execution of this FB started on a rising edge of the input*)
 		Command:  McAcpTrakShInteractCmdEnum; (*command that should be executed*)
 		Shuttle: REFERENCE TO McAxisType; (*Name of the second shuttle*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Function block is finished*)
+		Busy : BOOL; (*Function block is active and must continue to be called.*)
+		Error : BOOL; (*error occurred during operation*)
+		ErrorID : DINT; (*Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_SegLimitErrorScope_AcpTrak (*Limits the scope of error reaction for errors detected by this segment.*)
+	VAR_INPUT
+		Segment : REFERENCE TO McSegmentType; (*The segment reference establishes the connection between the function block and the segment.*)
+		Execute : BOOL; (*Execution of the function block begins on a rising edge of this input.*)
+		Mode : McAcpTrakSegLimitErrorScopeMode; (*Mode which defines the scope of error reaction.*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Execution successful. Function block is finished.*)
+		Busy : BOOL; (*Function block is active and must continue to be called.*)
+		Error : BOOL; (*Execution error*)
+		ErrorID : DINT; (*Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_ShSetUserId_AcpTrak (*sets the user id of a shuttle*)
+	VAR_INPUT
+		Axis : REFERENCE TO McAxisType; (*the shuttle reference establishes the connection between the function block and the shuttle.*)
+		Execute : BOOL; (*Execution of the function block begins on a rising edge of this input.*)
+		UserID : STRING[32]; (*shuttle user id*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Function block is finished*)
+		Busy : BOOL; (*Function block is active and must continue to be called.*)
+		Error : BOOL; (*error occurred during operation*)
+		ErrorID : DINT; (*Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_AsmCamPrepare_AcpTrak (*Prepare cam for use with each or one specific coupling object.*)
+	VAR_INPUT
+		Assembly : REFERENCE TO McAssemblyType; (*The assembly reference establishes the connection between the function block and the assembly.*)
+		CouplingObjectName: STRING[32]; (*Name of an existing coupling object or empty.*)
+		CamID : UINT; (*index for cam data object*)
+		Cam : McCamDefineType; (*specify cam to use*)
+		Execute : BOOL;  (*Execution of the function block begins on a rising edge of this input.*)
+	END_VAR
+	VAR_OUTPUT
+		Done : BOOL; (*Execution successful. Function block is finished.*)
+		Busy : BOOL; (* Function block is active and must continue to be called.*)
+		Error : BOOL; (* Execution error*)
+		ErrorID : DINT; (* Error number*)
+	END_VAR
+	VAR
+		Internal : McInternalType;
+	END_VAR
+END_FUNCTION_BLOCK
+
+FUNCTION_BLOCK MC_BR_ShSetMotionFilter_AcpTrak (*sets motion filter parameter of a shuttle*)
+	VAR_INPUT
+		Axis : REFERENCE TO McAxisType; (*the shuttle reference establishes the connection between the function block and the shuttle.*)
+		Execute : BOOL; (*Execution of the function block begins on a rising edge of this input.*)
+		MotionFilterParameter : McAcpTrakShFilterParType; (*Motion filter parameter*)
 	END_VAR
 	VAR_OUTPUT
 		Done : BOOL; (*Function block is finished*)

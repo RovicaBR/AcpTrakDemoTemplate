@@ -37,9 +37,9 @@ A possible layout configuration could be arranged such as:
 
 The project has been tested with the following versions:
 
-* Automation Studio 4.10
-* Scene Viewer 4
-* mappView / mappMotion / mappControl (version 5.18)
+* Automation Studio 4.12
+* Scene Viewer 4.3
+* mappView / mappMotion / mappControl (version 5.24)
 * AR G4.90
 
 <a name="How-To-Use"></a>

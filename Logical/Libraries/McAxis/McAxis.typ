@@ -392,7 +392,8 @@ TYPE
 		mcAX_TYPE_PURE_VIRT,	(*Purely virtual axis*)
 	 	mcAX_TYPE_PURE_VIRT_GPAI,	(*Purely virtual axis with activated general purpose axis interface*)
 	 	mcAX_TYPE_DS402_SERVO,	(*DS402 conform servo drive axis*)
-	 	mcAX_TYPE_DS402_INV	(*DS402 conform inverter axis*)
+	 	mcAX_TYPE_DS402_INV,	(*DS402 conform inverter axis*)
+	 	mcAX_TYPE_PURE_VIRT_EXT_ENC	(*Purely virtual axis with activated external encoder axis interface*)
 	);
 
 	McAcpAxAutoTuneFeedFwdModeEnum:
@@ -846,7 +847,7 @@ TYPE
         ModelNumber : STRING[19]; (*Model number of the drive*)
         ModuleID : STRING[11]; (*For B&R modules: B&R ID code; For DS402 modules: Product code; [hex]*)
         SerialNumber : STRING[19]; (*Serial number of the drive*)
-        Revision : STRING[3]; (*Revision number of the drive*)
+        Revision : STRING[11]; (*Revision number of the drive*)
         FirmwareVersion : STRING[7]; (*Used firmware version*)
     END_STRUCT;
 

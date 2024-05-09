@@ -6,9 +6,10 @@
         <Widget xsi:type="widgets.brease.AlarmList" id="AlarmList1" top="0" left="0" width="1080" height="405" zIndex="0" imageActive="Media/SymbolLib/Alarm/Alarm.svg" imageActiveAcknowledged="Media/SymbolLib/Alarm/Acknowledge.svg" imageInactive="Media/SymbolLib/Alarm/Alarm.svg" searchBox="false" sortingButtonColor="rgba(192, 192, 255, 1)" sortingButtonActiveColor="rgba(255, 0, 0, 1)">
           <Widgets>
             <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem1" width="195" zIndex="0" columnType="name" text="Name" />
-            <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem2" width="485" zIndex="1" text="Message" />
-            <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem3" width="280" zIndex="2" columnType="timestamp" text="TimeStamp" />
+            <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem2" width="265" zIndex="1" text="Message" />
+            <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem3" width="355" zIndex="2" columnType="timestamp" text="TimeStamp" />
             <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem4" width="120" zIndex="3" columnType="state" text="State" />
+            <Widget xsi:type="widgets.brease.AlarmListItem" id="AlarmListItem5" width="145" zIndex="4" columnType="additionalInfo1" text="Info" />
           </Widgets>
         </Widget>
         <Widget xsi:type="widgets.brease.Button" id="Button1" top="412" left="440" width="230" height="45" zIndex="1" text="AckAll" />

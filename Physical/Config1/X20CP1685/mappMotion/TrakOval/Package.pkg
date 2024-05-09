@@ -6,5 +6,6 @@
     <Object Type="File">Config_2.shuttlestereotype</Object>
     <Object Type="File">Config_3.sector</Object>
     <Object Type="File">Config_4.processpointlist</Object>
+    <Object Type="File">Config_5.mappmotioncfg</Object>
   </Objects>
 </Package>

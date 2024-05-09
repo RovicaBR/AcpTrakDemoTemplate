@@ -25,6 +25,11 @@ PROGRAM _INIT
 	// OUT
 	Speed_OUT ACCESS ADR(gSpeedFull); 	// <-- Bind it to Empty / Full speed global variable
 	Acc_OUT	ACCESS ADR(gAccFull); 		// <-- Bind it to Empty / Full acceleration global variable
+	(*** Tcp coupling functionality (enabled by default) ***)
+	TcpCoupling := TRUE;
+	ToolTcp_X	:= 0.12;
+	ToolTcp_Y 	:= 0.0;
+	ToolTcp_Z	:= 0.1;
 	(*** SceneViewer - Shuttle color after process ***)
 	Red	  := 0.0;
 	Green := 1.0;
@@ -167,6 +172,25 @@ PROGRAM _CYCLIC
 			MC_BR_ShMoveInConvoy_AcpTrak_0.Axis							:= ADR(ShuttleAxis[2]);
 			MC_BR_ShMoveInConvoy_AcpTrak_0.Execute						:= TRUE;
 			MC_BR_ShMoveInConvoy_AcpTrak_0.Parameters.ReferenceShuttle 	:= ADR(ShuttleAxis[1]);
+			
+			(* TCP Coupling parameters *)
+			IF TcpCoupling THEN
+				MC_BR_ShMoveInConvoy_AcpTrak_0.Parameters.CouplingMode	:= mcACPTRAK_COUPL_TCP_DIST;
+			ELSE
+				MC_BR_ShMoveInConvoy_AcpTrak_0.Parameters.CouplingMode	:= mcACPTRAK_COUPL_DIST;
+			END_IF
+			// Position adjustment should be performed at max. speed & acceleration
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.Velocity			:= 4.0;
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.Acceleration		:= 40.0;
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.Deceleration		:= 40.0;
+			// Master tool TCP position
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.ReferenceTcp.X	:= ToolTcp_X;
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.ReferenceTcp.Y	:= ToolTcp_Y;
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.ReferenceTcp.Z	:= ToolTcp_Z;
+			// Slave tool TCP position
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.Tcp.X				:= ToolTcp_X;
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.Tcp.Y				:= ToolTcp_Y;
+			MC_BR_ShMoveInConvoy_AcpTrak_0.AdvancedParameters.Tcp.Z				:= ToolTcp_Z;
 
 			Step := ADD_SH_CONV_WAIT;
 			

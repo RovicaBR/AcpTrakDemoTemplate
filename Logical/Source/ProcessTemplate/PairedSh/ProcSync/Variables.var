@@ -17,6 +17,13 @@ VAR
 	CntShuttle : USINT;
 	ProcPointPos : LREAL;
 	ProcPointPosDest : LREAL;
+	TcpCoupling : BOOL;
+END_VAR
+(*tcp coupling*)
+VAR
+	ToolTcp_X : LREAL;
+	ToolTcp_Y : LREAL;
+	ToolTcp_Z : LREAL;
 END_VAR
 (*colour configuration*)
 VAR
